@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Blank Page</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    
+    <link rel="stylesheet" href="~/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <link href="~/dist/css/jquery.alerts.css" rel="stylesheet" />
+    @*<link href="~/dist/css/jquery.datatables.min.css" rel="stylesheet" />*@ @*//hide for data table check*@
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+</head>
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Navbar -->
+        <partial name="~/Views/Shared/_NavBar.cshtml" />
+        <!-- /.navbar -->
+        <!-- SideBar -->
+        <partial name="~/Views/Shared/_SideBar.cshtml" />
+        <!-- /.SideBar-->
+
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <!-- /.content-wrapper -->
+
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.2.0
+            </div>
+            <strong>Copyright &copy; 2023-2030 <a href="https://adminlte.io">Farida classic Brain Dept</a>.</strong> All rights reserved.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+
+    
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+
+
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/dist/js/jquery.alerts.js"></script>
+    <script src="~/dist/js/demo.js"></script>
+
+    
+    <!-- DataTables  & Plugins -->
+    @*<script src="~/dist/js/jquery.datatables.min.js"></script>*@
+
+
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <!-- DataTables  & Plugins -->
+    
+    <script src="~/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    
+    <!-- InputMask -->
+    <script src="~/plugins/moment/moment.min.js"></script>
+    <script src="~/plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- date-range~cker -->
+    <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="~/plugins/select2/js/select2.full.min.js"></script>
+    
+
+    <script>
+        $(function () {
+            bsCustomFileInput.init();
+        });
+       //Date format
+        //Datemask dd/mm/yyyy
+        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+        //Datemask2 mm/dd/yyyy
+        $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+        //Money Euro
+        $('[data-mask]').inputmask()
+
+        $("input[data-bootstrap-switch]").each(function () {
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        })
+
+       //end of Date format
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

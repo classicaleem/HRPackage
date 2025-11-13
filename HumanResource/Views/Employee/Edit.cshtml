@@ -1,0 +1,86 @@
+﻿@model EmployeeModel
+
+@*<h1>Edit Employee</h1>*@
+<br />
+<form method="post" action="/Employee/Edit/@Model.Id">
+   @* <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" class="form-control" value="@Model.Name" required>
+    </div>
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" class="form-control" value="@Model.Age" required>
+    </div>
+    <div class="form-group">
+        <label for="bloodGroup">Blood Group:</label>
+        <input type="text" id="bloodGroup" name="bloodGroup" class="form-control" value="@Model.BloodGroup" required>
+    </div>
+    <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" class="form-control-file">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>*@
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Employee Master</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    @*<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">*@
+                                    <input type="text" id="name" name="Name" class="form-control" value="@Model.Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">AGE</label>
+                                    @*<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">*@
+                                    <input type="number" id="age" name="Age" class="form-control" value="@Model.Age" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">BloodGroup</label>
+                                    <input type="text" id="bloodGroup" name="BloodGroup" class="form-control" value="@Model.BloodGroup" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">File input</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            @*<input type="file" class="custom-file-input" id="exampleInputFile">*@
+                                            <input type="file" name="Image" class="custom-file-input" accept="image/*" id="exampleInputFile">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                    </div>
+                                </div>
+                               @* <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div>*@
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+                <!--/.col (left) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+</form>

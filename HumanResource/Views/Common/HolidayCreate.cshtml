@@ -1,0 +1,186 @@
+﻿@using HumanResource.Models.Common;
+@model Holiday
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<form id="holidayform">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Holiday Master</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+
+                        <div class="card-body">
+                            <div>
+                                <snap class="display-name" style="font-weight:bold;"><label class="control-label" for="employee">Holiday Type</label></snap>
+                                @Html.DropDownListFor(model => model.HolidayType, (new[]
+                                { new SelectListItem { Text = "--Select--", Value = "" },
+                                new SelectListItem { Text = "Declared", Value = "Declared" },
+                                new SelectListItem { Text = "LayOff", Value = "LayOff" },
+                                new SelectListItem { Text = "Adjustment", Value = "Adjustment" },}),
+                                new { @id = "holidayTypeID", @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label>Holiday Name</label>
+                                <input type="text" class="form-control" id="HolidayNameID" name="HolidayName" placeholder="Enter Holiday">
+                            </div>
+                            <div>
+                            <label>Holiday Date</label>
+                            <div class="input-group">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                            </div>
+                            <input type="text" name="HolidayDate" id="HolidayDateID"  class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric">
+                            </div>
+                            <!-- /.input group -->
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="button" id="FinalSubmit" class="btn btn-primary">SAVE</button>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+                <!--/.col (left) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+</form>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+          
+        });
+        
+
+
+
+
+        $("#FinalSubmit").click(function () {
+
+            if ($('#holidayTypeID').val() == "") {
+
+                Swal.fire('Please Select Holiday Type !!!')
+                return false;
+            }
+            else if ($('#HolidayNameID').val() == "") {
+
+                Swal.fire('Please Enter Holiday Name !!!')
+                return false;
+            }
+            else if ($('#HolidayDateID').val() == "") {
+
+                Swal.fire('Please Enter Holiday Date !!!')
+                return false;
+            }
+            else
+            $.ajax({
+                type: "post",
+                url: "/Common/HolidayCreate",
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                dataType: 'json',
+                processData: false,
+                data: $("#holidayform").serialize(),
+                success: function (response) {
+                    alert('Successfully Added!!!');
+                        window.location.href = '@Url.Action("HolidayIndex", "Common")';
+                    },
+                    error: function () {
+                        alert('Failed to receive the Data');
+                        console.log('Failed');
+                    }
+                });
+                
+            });
+
+
+    </script>
+}
+
+
+@*<script>
+
+    $(document).ready(function () {
+
+
+        $('#FinalSubmit').on('click', function () {
+            var D = $('#categoryID').val(); // Get the value of the input field with ID categoryID
+            alert(D); // Show an alert with the value
+
+            if (D != "") {
+                // If the value is not empty
+                $.ajax({
+                    type: 'POST',
+                    url: '/Common/CategoryCreate',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: data, // The data variable is not defined here
+                    success: function (result) {
+                        // This function runs when the request is successful
+                        console.log(result); // Log the result to the console
+                    },
+                    error: function () {
+                        // This function runs when the request encounters an error
+                        alert('Failed to receive the Data');
+                        console.log('Failed');
+                    }
+                })
+            } else {
+                // If the value is empty
+                jAlert('Please Enter Catergory Name !!!.', 'HR Management', function () {
+                    $("#categoryID").focus(); // Focus on the input field with ID categoryID
+                });
+            }
+        });
+
+
+    });
+
+        //$('#FinalSubmit').on('click', function () {
+
+        //    var D= $('#categoryID').val();
+        //    alert(D);
+        //    if (D!="")
+        //    {
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/Common/CategoryCreate',
+        //            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // when we use .serialize() this generates the data in query string format. this needs the default contentType (default content type is: contentType: 'application/x-www-form-urlencoded; charset=UTF-8') so it is optional, you can remove it
+        //            data: data,
+        //            success: function (result) {
+        //                // alert('Successfully received Data ');
+        //                console.log(result);
+        //            },
+        //            error: function () {
+        //                alert('Failed to receive the Data');
+        //                console.log('Failed ');
+        //            }
+        //        })
+
+        //    }
+        //    else{
+        //        jAlert('Please Enter Catergory Name !!!.', 'HR Management', function () {
+        //            $("#categoryID").focus();
+        //        });
+        //    }
+
+
+        //});
+</script>*@

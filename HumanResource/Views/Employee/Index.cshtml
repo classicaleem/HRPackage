@@ -1,0 +1,225 @@
+﻿@using HumanResource.Models;
+@model List<EmployeeModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <br />
+</div>
+<div class="row col-3">
+    <a class="btn btn-app">
+        <i class="fa fa-plus-circle" onclick="location.href='@Url.Action("Create")'"></i> Add Employee
+    </a>
+    @*  <button onclick="location.href='@Url.Action("Create")'" class="btn btn-block btn-outline-dark btn-sm">Create Employee</button>*@
+
+</div>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1>Employee List</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+
+</section>
+@*<form id="indexform">
+
+</form>
+<div class="row">
+
+    <div class="form-group col-md-2 col-xs-12 ">
+        <label for="exampleInputEmail1">Employee Name</label>
+        <input type="text" id="name" name="Name" class="form-control" placeholder="Enter Employee Name" required>
+    </div>
+
+    <div class="form-group col-md-2 col-xs-12 ">
+        <label for="exampleInputPassword1">Age</label>
+        <input type="number" id="age" name="Age" class="form-control" placeholder="Age" required>
+    </div>
+    <div class="form-group col-md-2 col-xs-12 ">
+        <label for="exampleInputPassword1">Blood Group</label>
+        <input type="text" id="bloodGroup" name="BloodGroup" class="form-control" placeholder="Blood Group" required>
+    </div>
+    <div class="form-group col-md-2 col-xs-12 ">
+        <label for="exampleInputPassword1">Blood Group</label>
+        <input type="text" id="bloodGroup" name="BloodGroup" class="form-control" placeholder="Blood Group" required>
+    </div>
+</div>*@
+
+<div class="row">
+    <div class="col-md-12 col-xs-12" style="text-align:center">
+        <div class="form-group">
+            <input type="button" class="btn btn-primary gradient" id="SEARCH"  value="SEARCH">
+            @*<input type="button" class="btn btn-primary gradient" id="demo" name="demo" title="demo" alt="demo" value="demo">*@
+        </div>
+    </div>
+</div>
+
+
+
+<div id="tableviewID" hidden>
+
+
+
+    <div class="row col-3">
+
+        <a href="@Url.Action("ExportToExcel", "Employee")" class="btn btn-success">
+
+            <i class="fas fa-file-excel"></i> Export to Excel
+        </a>
+
+    </div>
+
+
+    <br />
+    <table id="productsTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Employee Name</th>
+                <th>Age</th>
+                <th>Blood Group</th>
+                <th>Father's Name</th>
+                <th>ESI No</th>
+                <th>PF No</th>
+                <th>Gender</th>
+                 <th>Date of Joining</th>
+                <th>Mobile No</th>
+                <th>Date of Leaving</th>
+                <th>UAN No</th>
+                <th>Aadhar Card No</th>
+                <th>Religion</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody id="idEvaluationSummaryBody"></tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+
+
+    
+
+
+    <script>
+
+        //$('#SEARCH').on('click', function () {
+        //    var table = $('#productsTable').DataTable();
+        //    if (table !== undefined) {
+        //        table.destroy();
+        //    }
+
+        //    $("#tableviewID").removeAttr("hidden");
+        //    $('#productsTable').DataTable({
+
+        //        "serverSide": true,
+        //        "processing": true,
+        //        "ajax": {
+        //            "url": "/Employee/GetData",
+        //            "type": "Get",
+        //            "dataSrc": "data",
+        //        },
+
+        //        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+        //        // "dataSrc":"data",
+        //        "columns": [
+        //            { "data": "id", "autoWidth": true },
+        //            //{ "data": "name", "autoWidth": true },
+
+        //            { "data": "name", "autoWidth": true }, // Change the column name "name" to whatever you want
+        //            { "data": "age", "autoWidth": true },
+        //            { "data": "bloodGroup", "autoWidth": true },
+        //            { "data": "fatherName", "autoWidth": true },
+        //            { "data": "esiNo", "autoWidth": true },
+        //            { "data": "pfNo", "autoWidth": true },
+        //            { "data": "gender", "autoWidth": true },
+        //            { "data": "dateOfJoining", "autoWidth": true },
+        //            { "data": "dateOfLeaving", "autoWidth": true },
+        //            { "data": "mobileNo", "autoWidth": true },
+        //            { "data": "uanNo", "autoWidth": true },
+        //            { "data": "aadharCardNo", "autoWidth": true },
+        //            { "data": "religion", "autoWidth": true },
+        //            { "data": "address", "autoWidth": true },
+
+
+        //        ]
+        //    });
+        //});
+        $('#SEARCH').on('click', function () {
+            var table = $('#productsTable').DataTable();
+            if (table !== undefined) {
+                table.destroy();
+            }
+            $("#tableviewID").removeAttr("hidden");
+            $('#productsTable').DataTable({               
+                "ajax": {
+                    "url": "/Employee/GetData",
+                    "type": "Post",                
+                },
+                
+                "columns": [
+                    { "data": "id", "width": "50px" }, // Set fixed width for each column
+                    { "data": "name", "width": "150px" },
+                    { "data": "age", "width": "80px" },
+                    { "data": "bloodGroup", "width": "100px" },
+                    { "data": "fatherName", "width": "150px" },
+                    { "data": "esiNo", "width": "100px" },
+                    { "data": "pfNo", "width": "100px" },
+                    { "data": "gender", "width": "80px" },
+                    { "data": "dateOfJoining", "width": "120px" },
+                    { "data": "mobileNo", "width": "120px" },
+                    { "data": "dateOfLeaving", "width": "120px" },
+                    { "data": "uanNo", "width": "100px" },
+                    { "data": "aadharCardNo", "width": "150px" },
+                    { "data": "religion", "width": "100px" },
+                    { "data": "address", "width": "200px" },                      
+                ],
+                "serverSide": true,
+                "processing": true,
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+                                    //$(document).ready(function () {
+                                    //  var table = $('#productsTable').DataTable();
+                                    //        if (table !== undefined) {
+                                    //            table.destroy();
+                                    //        }
+
+                                    //        $('#productsTable').DataTable({
+                                    //            "serverSide": true,
+                                    //            "processing": true,
+                                    //            "ajax": {
+                                    //                "url": "/Employee/GetData",
+                                    //                 "type": "Get",
+                                    //                "dataSrc":"data",
+
+
+                                    //            },
+
+
+                                    //            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, 'All']],
+                                    //           // "dataSrc":"data",
+                                    //            "columns": [
+                                    //                { "data": "id", "autoWidth": true },
+                                    //                { "data": "name", "autoWidth": true },
+
+                                    //            ]
+                                    //        });
+                                    //});
+    </script>
+}

@@ -1,0 +1,129 @@
+﻿@using HumanResource.Models.Common;
+
+@model List<Company>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <br />
+</div>
+<div class="row col-3">
+    @*<button onclick="location.href='@Url.Action("DesignationCreate")'" class="btn btn-block btn-outline-dark btn-sm">Create Designation</button>*@
+    @*<button class="btn btn-primary btn-block col-sm-6 ml-3" onclick="location.href='@Url.Action("SkillCreate")'">Create Skill</button>*@
+    <a class="btn btn-app ml-3">
+        <i class="fa fa-plus-circle" onclick="location.href='@Url.Action("CompanyCreate")'"></i> Add Company
+    </a>
+
+</div>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1>Company List</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap">
+
+                            <thead>
+                                <tr>
+                                    <th>Company ID</th>
+                                    <th>Company Name</th>
+                                    <th>.NameInTamil</th>
+                                    <th>ShortName</th>
+                                    <th>GroupCode</th>
+                                    <th>SubGroupCode</th>
+                                    <th>Address</th>
+                                    <th>AddressInTamil</th>
+                                    <th>City</th>
+                                    <th>CityInTamil</th>
+                                    <th>State</th>
+                                    <th>StateInTamil</th>
+                                    <th>Pincode</th>
+                                    <th>Mobile</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>PFESTCode</th>
+                                    <th>ESICode</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Count == 0)
+                                {
+                                    <tr>
+                                        <td>
+                                            <p>No Company found.</p>
+                                        </td>
+                                    </tr>
+
+                                }
+                                else
+                                {
+
+                                    @foreach (var employee in Model)
+                                    {
+                                        <tr>
+                                            <td>@employee.CompanyId</td>
+                                            <td>@employee.CompanyName</td>
+                                            <td>@employee.CNameInTamil</td>
+                                            <td>@employee.ShortName</td>
+                                            <td>@employee.GroupCode</td>
+                                            <td>@employee.SubGroupCode</td>
+                                            <td>@employee.Address</td>
+                                            <td>@employee.AddressInTamil</td>
+                                            <td>@employee.City</td>
+                                            <td>@employee.CityInTamil</td>
+                                            <td>@employee.State</td>
+                                            <td>@employee.StateInTamil</td>
+                                            <td>@employee.Pincode</td>
+                                            <td>@employee.Mobile</td>
+                                            <td>@employee.Phone</td>
+                                            <td>@employee.Email</td>
+                                            <td>@employee.PFESTCode</td>
+                                            <td>@employee.ESICode</td>
+                                        </tr>
+                                    }
+
+                                }
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+
+    </div>
+</section>
+
+

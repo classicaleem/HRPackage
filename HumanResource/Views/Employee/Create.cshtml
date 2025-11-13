@@ -1,0 +1,314 @@
+﻿@model EmployeeModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+<form method="post" action="/Employee/Create" enctype="multipart/form-data">
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card">
+
+
+                        <!-- form start -->
+
+                        <div class="card-body" style="border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                            <div class="tab-content">
+                                <div class="row">
+                                    <div class="form-group col-md-3 col-xs-12 ">
+                                        <label for="exampleInputEmail1">Employee Name</label>
+                                        <input type="text" id="EmployeeNameID" name="Name" class="form-control" placeholder="Enter Employee Name" required>
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="Fname">Father Name</label>
+                                        <input type="text" id="FnameID" name="FatherName" class="form-control" placeholder="Enter Father Name">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="Age">Age</label>
+                                        <input type="number" id="AgeID" name="Age" class="form-control" placeholder="Age">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Date of Birth:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            </div>
+                                            <input type="text" name="DOB" id="DOBID" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric">
+                                        </div>                                        
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="ESI">ESI No:</label>
+                                        <input type="text" id="ESIID" name="ESINo" class="form-control" placeholder="ESI">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="PF">PF No:</label>
+                                        <input type="text" id="PFID" name="PFNo" class="form-control" placeholder="PF Number">
+                                    </div>
+
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <snap class="display-name" style="font-weight:bold;"><label class="control-label" for="Employee">Gender:</label></snap>
+                                        @Html.DropDownListFor(model => model.Gender, (new[]
+                                        { new SelectListItem { Text = "--Select--", Value = "" },
+                                        new SelectListItem { Text = "Male", Value = "Male" },
+                                        new SelectListItem { Text = "Female", Value = "Female" },}),
+                                        new { @id = "GenderID", @class = "form-control" })
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Date Join:</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            </div>
+                                            <input type="text" name="DateOfJoining" id="dateID" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" inputmode="numeric">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                </div>
+                                <h2>Personal details</h2>
+                                <hr />
+                                <div class="row">
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="Mobile">Mobile No:</label>
+                                        <input type="text" id="MobileID" name="MobileNo" class="form-control" placeholder="Mobile Number">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="UAN">UAN No:</label>
+                                        <input type="text" id="UANID" name="UANNo" class="form-control" placeholder="UAN Number">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="Aadhar">Aadhar No:</label>
+                                        <input type="text" id="AadharID" name="AadharCardNo" class="form-control" placeholder="Aadhar Number">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <snap class="display-name" style="font-weight:bold;"><label class="control-label" for="Religion">Religion:</label></snap>
+                                        @Html.DropDownListFor(model => model.Religion, (new[]
+                                        { new SelectListItem { Text = "--Select--", Value = "" },
+                                        new SelectListItem { Text = "Islam", Value = "Islam" },
+                                        new SelectListItem { Text = "Christian", Value = "christian" },
+                                        new SelectListItem { Text = "Hindu", Value = "Hindu" },}),
+                                        new { @id = "ReligionID", @class = "form-control" })
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="Address">Address</label>
+                                        <input type="text" id="AddressID" name="Address" class="form-control" placeholder="Address">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="State">State:</label>
+                                        <input type="text" id="StateID" name="State" class="form-control" placeholder="State">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="City">City</label>
+                                        <input type="text" id="CityID" name="City" class="form-control" placeholder="City">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="Department">Department</label>
+                                        @Html.DropDownListFor(model => model.Department, Model.lstDepartment, "---Select---",new { @id = "DepartmentID", @class = "form-control select2" })
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+
+                         
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="Section">Section</label>
+                                        <select id="SectionID" name="Section" class="form-control select2"></select>
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="Department">Bank IFSC</label>
+                                        @Html.DropDownListFor(model => model.BankID, Model.lstIFSC, "---Select---", new { @id = "IFSCcodeID", @class = "form-control select2" })
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="BankDetails">Bank Details</label>
+                                        <textarea id="BankDetails" name="BankDetails" class="form-control" disabled>Bank Details</textarea>
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="BloodGroup">Blood Group</label>
+                                        <input type="text" id="bloodGroupID" name="BloodGroup" class="form-control" placeholder="Blood Group">
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label for="Bonus">Bonus Flag</label>
+                                        <input type="checkbox" name="Bonus" checked data-bootstrap-switch>
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Profile Photo:</label>
+                                        <input type="file" for="ProfilePhoto" name="ProfilePhoto" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-footer">
+                        @*<button type="submit" class="btn btn-primary">Submit</button>*@
+                        <button type="button" id="savebtn" class="btn btn-primary">Save</button>
+                        <button type="button" id="testbtn" class="btn btn-primary">Test Auto Fill</button>
+                    </div>
+
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+
+    </section>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label for="Department">Category</label>
+                            @Html.DropDownListFor(model => model.Category, Model.lstCategory, "---Select---", new { @id = "CategoryID", @class = "form-control select2" })
+                        </div>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label for="State">EmployeeCode:</label>
+                            <input type="text" id="EmployeeCodeID" name="EmployeeCode" class="form-control" placeholder="EmployeeCode">
+                        </div>
+                        <div class="form-group col-md-12 col-xs-12">
+                            <label for="State">Punch Number:</label>
+                            <input type="text" id="EmployeeID" name="EmployeeID" class="form-control" placeholder="EmployeeID">
+                        </div>
+                    </div>
+                  
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+
+
+    <script>
+
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+        });
+
+        $("#CategoryID").change(function () {
+            var CategoryID = $(this).val();
+            
+            $.ajax({
+                url: '@Url.Action("GetNextEmployeeId", "Employee")',
+                data: { CategoryID: CategoryID }, // Use SectionId here
+                type: 'GET',
+                success: function (data) {
+                    $("#EmployeeCodeID").val(data.employeeCode);
+                    $("#EmployeeID").val(data.empid);
+                }
+            });
+        });
+        $("#IFSCcodeID").change(function () {
+            var IFSCID = $(this).val();
+            console.log(IFSCID)
+            $.ajax({
+                url: '@Url.Action("GetBank", "Employee")',
+                data: { IFSCID: IFSCID }, // Use SectionId here
+                type: 'GET',
+                success: function (data) {
+                    $("#BankDetails").val(data.text);
+                }
+            });
+        });
+
+
+      
+
+
+        $('#savebtn').on('click', function () {
+            $('#myModal').modal('show');
+        });
+
+        $(document).ready(function () {
+            
+
+
+            $("#DepartmentID").change(function () {
+                var sectionId = $(this).val();
+                $.ajax({
+                    url: '@Url.Action("GetSection", "Employee")',
+                    data: { sectionId: sectionId }, // Use SectionId here
+                    type: 'GET',
+                    success: function (data) {
+                        var SectionDropdown = $("#SectionID");
+                        SectionDropdown.empty();
+                        $.each(data, function (i, item) {
+                            SectionDropdown.append($('<option>').val(item.value).text(item.text));
+                        });
+                    }
+                });
+            });
+
+            
+           
+
+        });
+
+
+        $('#testbtn').on('click', function () {
+            $('#EmployeeID').val("John");
+            $('#FnameID').val("Employee Father");
+            $('#bloodGroupID').val("B Positive");
+            $('#AgeID').val("28");
+            $('#AddressID').val("Test");
+            $('#ReligionID').val("Islam");
+            $('#AadharID').val("4566667878");
+            $('#UANID').val("100011122");
+            $('#MobileID').val("9629388975");
+            $('#GenderID').val("Male");
+            $('#PFID').val("55225555");
+            $('#ESIID').val("78784845");
+            $('#dateID').val("02/05/2022");
+            $('#DOBID').val("05/05/1995");
+            $('#CityID').val("Ambur");
+            $('#DepartmentID').val("11");
+            $('#StateID').val("TamilNadu");
+        });
+
+
+
+
+
+    </script>
+}

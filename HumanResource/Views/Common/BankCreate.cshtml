@@ -1,0 +1,224 @@
+﻿@using HumanResource.Models.Common;
+@model Bank
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<form id="bankform">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Bank Master</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="bank">Bank Name</label>
+                                <input type="text" class="form-control" name="BankName" id="banknameId" placeholder="Enter Bank">
+                            </div>
+                        @* </div> *@
+                        @* <div class="card-body"> *@
+                            <div class="form-group">
+                                <label for="bank">Branch Name</label>
+                                <input type="text" class="form-control" name="Branch" id="branchId" placeholder="Enter Branch">
+                            </div>
+                       @*  </div>
+                        <div class="card-body"> *@
+                            <div class="form-group">
+                                <label for="bank">IFSC Code</label>
+                                <input type="text" class="form-control" name="IFSC_Code" id="ifsccodeId" placeholder="Enter IFSC Code">
+                            </div>
+                        @* </div>
+                        <div class="card-body"> *@
+                            <div class="form-group">
+                                <label for="bank">Address</label>
+                                <input type="text" class="form-control" name="Address" id="addressId" placeholder="Enter Address">
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="button" id="FinalSubmit" class="btn btn-success">SAVE</button>
+                            <button type="reset" id="FinalSubmit" class="btn btn-secondary">CLEAR</button>
+                            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("BankIndex")'">CANCEL</button>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+
+
+                </div>
+                <!--/.col (left) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+</form>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+
+
+        $(document).ready(function () {
+
+        });
+
+
+
+
+
+        $("#FinalSubmit").click(function () {
+
+            if ($('#banknameId').val() == "") {
+
+                Swal.fire('Please Enter Bank Name !!!')
+                return false;
+            }
+            else if ($('#branchId').val() == "") {
+
+                Swal.fire('Please Enter Branch Name !!!')
+                return false;
+            }
+            else if ($('#ifsccodeId').val() == "") {
+
+                Swal.fire('Please Enter IFSC Code !!!')
+                return false;
+            }
+            else if ($('#addressId').val() == "") {
+
+                Swal.fire('Please Enter Address !!!')
+                return false;
+            }
+            else
+                $.ajax({
+                    type: "post",
+                    url: "/Common/BankCreate",
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    dataType: 'json',
+                    processData: false,
+                    data: $("#bankform").serialize(),
+                    success: function (response) {
+                        alert('Successfully Added!!!');
+                        window.location.href = '@Url.Action("BankIndex", "Common")';
+                    },
+                    error: function () {
+                        alert('Failed to receive the Data');
+                        console.log('Failed');
+                    }
+                });
+
+        });
+
+
+        // $(document).ready(function () {
+        //     $('#FinalSubmit').on('click', function () {
+        //         var D = $('#bankId').val();
+
+
+        //         if (D !== "") {
+        //             $.ajax({
+        //                 type: 'POST',
+        //                 url: '/Common/BankCreate',
+        //                 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        //                 data: { Name: D }, // Corrected the 'data' parameter
+        //                 success: function (result) {
+        //                     alert('Successfully Added!!!');
+        //                     window.location.href = '@Url.Action("BankIndex", "Common")';
+        //                 },
+        //                 error: function () {
+        //                     alert('Failed to receive the Data');
+        //                     console.log('Failed');
+        //                 }
+        //             });
+        //         } else {
+        //             //jAlert('Please Enter Category Name!!!', 'HR Management', function () {
+        //             //    $("#categoryID").focus();
+        //             //});
+        //             Swal.fire('Please Enter Bank Name!!!')
+        //             //$.jAlert('attach');
+        //         }
+        //     });
+        // });
+    </script>
+}
+
+
+@*<script>
+
+    $(document).ready(function () {
+
+
+        $('#FinalSubmit').on('click', function () {
+            var D = $('#categoryID').val(); // Get the value of the input field with ID categoryID
+            alert(D); // Show an alert with the value
+
+            if (D != "") {
+                // If the value is not empty
+                $.ajax({
+                    type: 'POST',
+                    url: '/Common/CategoryCreate',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: data, // The data variable is not defined here
+                    success: function (result) {
+                        // This function runs when the request is successful
+                        console.log(result); // Log the result to the console
+                    },
+                    error: function () {
+                        // This function runs when the request encounters an error
+                        alert('Failed to receive the Data');
+                        console.log('Failed');
+                    }
+                })
+            } else {
+                // If the value is empty
+                jAlert('Please Enter Catergory Name !!!.', 'HR Management', function () {
+                    $("#categoryID").focus(); // Focus on the input field with ID categoryID
+                });
+            }
+        });
+
+
+    });
+
+        //$('#FinalSubmit').on('click', function () {
+
+        //    var D= $('#categoryID').val();
+        //    alert(D);
+        //    if (D!="")
+        //    {
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/Common/CategoryCreate',
+        //            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // when we use .serialize() this generates the data in query string format. this needs the default contentType (default content type is: contentType: 'application/x-www-form-urlencoded; charset=UTF-8') so it is optional, you can remove it
+        //            data: data,
+        //            success: function (result) {
+        //                // alert('Successfully received Data ');
+        //                console.log(result);
+        //            },
+        //            error: function () {
+        //                alert('Failed to receive the Data');
+        //                console.log('Failed ');
+        //            }
+        //        })
+
+        //    }
+        //    else{
+        //        jAlert('Please Enter Catergory Name !!!.', 'HR Management', function () {
+        //            $("#categoryID").focus();
+        //        });
+        //    }
+
+
+        //});
+</script>*@

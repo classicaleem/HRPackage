@@ -1,0 +1,149 @@
+﻿@using HumanResource.Models.Common;
+@model Category
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<form>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Category Master</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                   
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="category">Category Name</label>
+                                <input type="text" class="form-control" id="categoryID" placeholder="Enter Category">
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="button" id="FinalSubmit" class="btn btn-primary">SAVE</button>
+                        </div>
+                    
+                </div>
+                <!-- /.card -->
+
+
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+</form>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            $('#FinalSubmit').on('click', function () {
+                var D = $('#categoryID').val();
+               
+
+                if (D !== "") {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Common/CategoryCreate',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        data: { Name: D }, // Corrected the 'data' parameter
+                        success: function (result) {
+                            window.location.href = '@Url.Action("CategoryIndex", "Common")';
+                        },
+                        error: function () {
+                            alert('Failed to receive the Data');
+                            console.log('Failed');
+                        }
+                    });
+                } else {
+                    //jAlert('Please Enter Category Name!!!', 'HR Management', function () {
+                    //    $("#categoryID").focus();
+                    //});
+                    Swal.fire('Please Enter Category Name!!!')
+                    //$.jAlert('attach');
+                }
+            });
+        });
+    </script>
+}
+
+
+@*<script>
+
+    $(document).ready(function () {
+
+
+        $('#FinalSubmit').on('click', function () {
+            var D = $('#categoryID').val(); // Get the value of the input field with ID categoryID
+            alert(D); // Show an alert with the value
+
+            if (D != "") {
+                // If the value is not empty
+                $.ajax({
+                    type: 'POST',
+                    url: '/Common/CategoryCreate',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: data, // The data variable is not defined here
+                    success: function (result) {
+                        // This function runs when the request is successful
+                        console.log(result); // Log the result to the console
+                    },
+                    error: function () {
+                        // This function runs when the request encounters an error
+                        alert('Failed to receive the Data');
+                        console.log('Failed');
+                    }
+                })
+            } else {
+                // If the value is empty
+                jAlert('Please Enter Catergory Name !!!.', 'HR Management', function () {
+                    $("#categoryID").focus(); // Focus on the input field with ID categoryID
+                });
+            }
+        });
+
+
+    });
+
+        //$('#FinalSubmit').on('click', function () {
+
+        //    var D= $('#categoryID').val();
+        //    alert(D);
+        //    if (D!="")
+        //    {
+        //        $.ajax({
+        //            type: 'POST',
+        //            url: '/Common/CategoryCreate',
+        //            contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // when we use .serialize() this generates the data in query string format. this needs the default contentType (default content type is: contentType: 'application/x-www-form-urlencoded; charset=UTF-8') so it is optional, you can remove it
+        //            data: data,
+        //            success: function (result) {
+        //                // alert('Successfully received Data ');
+        //                console.log(result);
+        //            },
+        //            error: function () {
+        //                alert('Failed to receive the Data');
+        //                console.log('Failed ');
+        //            }
+        //        })
+
+        //    }
+        //    else{
+        //        jAlert('Please Enter Catergory Name !!!.', 'HR Management', function () {
+        //            $("#categoryID").focus();
+        //        });
+        //    }
+
+
+        //});
+</script>*@

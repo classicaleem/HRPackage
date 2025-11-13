@@ -1,0 +1,288 @@
+﻿@using HumanResource.Models.Common;
+@model Company
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+<form method="post" action="/Common/CompanyCreate" enctype="multipart/form-data">
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card" style="border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+
+                        <!-- form start -->
+
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="row">
+                                    @*<div class="form-group col-md-3 col-xs-12 ">
+                                        <label for="exampleInputEmail1">Company Code</label>
+                                        <input type="text" id="name" name="Name" class="form-control" placeholder="Enter Company Code" required>
+                                    </div>*@
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Company Name</label>
+                                        <input type="text" id="CompanyNameID" name="CompanyName" class="form-control" placeholder="Enter Company Name" >
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Company Name Tamil</label>
+                                        <input type="text" id="CNameInTamilID" name="CNameInTamil" class="form-control" placeholder="Enter Company Name In Tamil">
+                                    </div>
+                                    @*<div class="form-group col-md-3 col-xs-12">
+                                        <label for="BloodGroup">Blood Group</label>
+                                        <input type="text" id="bloodGroup" name="BloodGroup" class="form-control" placeholder="Blood Group">
+                                    </div>*@
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Short Name</label>
+                                        <input type="text" id="ShortNameID" name="ShortName" class="form-control" placeholder="Enter Short Name">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Group</label>
+                                        <input type="text" id="GroupCodeID" name="GroupCode" class="form-control" placeholder="Enter Group">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                   
+                                    
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Sub Group</label>
+                                        <input type="text" id="SubGroupCodeID" name="SubGroupCode" class="form-control" placeholder="Enter Sub Group">
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Address</label>
+                                        <input type="text" id="AddressID" name="Address" class="form-control" placeholder="Enter Address">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Address In Tamil</label>
+                                        <input type="text" id="AddressInTamilID" name="AddressInTamil" class="form-control" placeholder="Enter Address In Tamil">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>City</label>
+                                        <input type="text" id="CityID" name="City" class="form-control" placeholder="Enter City">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>City In Tamil</label>
+                                        <input type="text" id="CityInTamilID" name="CityInTamil" class="form-control" placeholder="Enter City In Tamil">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>State</label>
+                                        <input type="text" id="StateID" name="State" class="form-control" placeholder="Enter State">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>State In Tamil</label>
+                                        <input type="text" id="StateInTamilID" name="StateInTamil" class="form-control" placeholder="Enter State In Tamil">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Pincode</label>
+                                        <input type="text" id="PincodeID" name="Pincode" class="form-control" placeholder="Enter Pincode">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Mobile</label>
+                                        <input type="text" id="MobileID" name="Mobile" class="form-control" placeholder="Enter Mobile Number">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Phone</label>
+                                        <input type="text" id="PhoneID" name="Phone" class="form-control" placeholder="Enter Phone Number">
+                                    </div>
+                                    @*<div class="form-group col-md-3 col-xs-12">
+                                        <snap class="display-name" style="font-weight:bold;"><label class="control-label" for="Religion">Religion:</label></snap>
+                                        @Html.DropDownListFor(model => model.Religion, (new[]
+                                        { new SelectListItem { Text = "--Select--", Value = "" },
+                                        new SelectListItem { Text = "Islam", Value = "Islam" },
+                                        new SelectListItem { Text = "Christian", Value = "christian" },
+                                        new SelectListItem { Text = "Hindu", Value = "Hindu" },}),
+                                        new { @id = "ReligionID", @class = "form-control" })
+                                    </div>
+*@
+                                </div>
+
+                                <hr />
+                                <div class="row">
+
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>Email</label>
+                                        <input type="text" id="EmailID" name="Email" class="form-control" placeholder="Enter Email">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>PF Establishment Code</label>
+                                        <input type="text" id="PFESTCodeID" name="PFESTCode" class="form-control" placeholder="Enter PF Code">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-12">
+                                        <label>ESI Code</label>
+                                        <input type="text" id="ESICodeID" name="ESICode" class="form-control" placeholder="Enter ESI Code">
+                                    </div>
+                                </div>
+                                @*<div class="form-group col-md-3 col-xs-12">
+                                    <label for="Bonus">Bonus Flag</label>
+                                    <input type="checkbox" name="Bonus" checked data-bootstrap-switch>
+                                </div>
+                                <div class="form-group col-md-3 col-xs-12">
+                                    <label>Profile Photo:</label>
+                                    <input type="file" for="ProfilePhoto" name="ProfilePhoto" />
+                                </div>*@
+
+
+
+                                @*<div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <div class="input-group">
+                                <div class="custom-file">
+                                <input type="file" name="Image" class="custom-file-input" accept="image/*" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                                </div>
+                                </div>
+                                </div>*@
+
+                            </div>
+                            <!-- /.tab-content -->
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" id="companyID" class="btn btn-primary">SUBMIT</button>
+                            <button type="reset" class="btn btn-primary">CLEAR</button>
+                            @*<button type="button" id="testbtn" class="btn btn-primary">Test</button>*@
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!--/.col (left) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+</form>
+@section Scripts {
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $(document).on('click', 'form button[type=submit]', function (e) {
+                
+                if ($('#CompanyNameID').val() == "") {
+                    
+                    Swal.fire('Please Enter company Name !!!')
+                    return false;
+                }
+                else if ($('#CNameInTamilID').val() == "") {
+
+                    Swal.fire('Please Enter company Name In Tamil !!!')
+                    return false;
+                }
+                else if ($('#ShortNameID').val() == "") {
+
+                    Swal.fire('Please Enter Short Name !!!')
+                    return false;
+                }
+                else if ($('#GroupCodeID').val() == "") {
+
+                    Swal.fire('Please Enter Group Code !!!')
+                    return false;
+                }
+                else if ($('#SubGroupCodeID').val() == "") {
+
+                    Swal.fire('Please Enter Sub Group Code !!!')
+                    return false;
+                }
+                else if ($('#AddressID').val() == "") {
+
+                    Swal.fire('Please Enter Address !!!')
+                    return false;
+                }
+                else if ($('#AddressInTamilID').val() == "") {
+
+                    Swal.fire('Please Enter Address In Tamil !!!')
+                    return false;
+                }
+                else if ($('#CityID').val() == "") {
+
+                    Swal.fire('Please Enter City !!!')
+                    return false;
+                }
+                else if ($('#CityInTamilID').val() == "") {
+
+                    Swal.fire('Please Enter City In Tamil !!!')
+                    return false;
+                }
+                else if ($('#StateID').val() == "") {
+
+                    Swal.fire('Please Enter State !!!')
+                    return false;
+                }
+                else if ($('#StateInTamilID').val() == "") {
+
+                    Swal.fire('Please Enter State In Tamil !!!')
+                    return false;
+                }
+                else if ($('#PincodeID').val() == "") {
+
+                    Swal.fire('Please Enter Pincode !!!')
+                    return false;
+                }
+                else if ($('#MobileID').val() == "") {
+
+                    Swal.fire('Please Enter Mobile Number !!!')
+                    return false;
+                }
+                else if ($('#PhoneID').val() == "") {
+
+                    Swal.fire('Please Enter Phone Number !!!')
+                    return false;
+                }
+                else if ($('#EmailID').val() == "") {
+
+                    Swal.fire('Please Enter Email !!!')
+                    return false;
+                }
+                else if ($('#PFESTCodeID').val() == "") {
+
+                    Swal.fire('Please Enter PF Code !!!')
+                    return false;
+                }
+                else if ($('#ESICodeID').val() == "") {
+
+                    Swal.fire('Please Enter ESI Code !!!')
+                    return false;
+                }
+                else {
+                    
+                    
+                }
+                });
+
+            $('#testbtn').on('click', function () {
+                $('#AddressID').val("Test");
+                $('#ReligionID').val("Islam");
+                $('#AadharID').val("4566667878");
+                $('#UANID').val("100011122");
+                $('#MobileID').val("9629388975");
+                $('#GenderID').val("Male");
+                $('#PFID').val("55225555");
+                $('#ESIID').val("78784845");
+                $('#dateID').val("05/05/1995");
+                //  $('#GenderID').val("Male");
+                //   $('#GenderID').val("Male");
+                //$('#GenderID').val("Male");
+            });
+        });
+
+
+
+
+    </script>
+}

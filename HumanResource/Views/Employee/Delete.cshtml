@@ -1,0 +1,10 @@
+﻿@model EmployeeModel
+
+<h1>Delete Employee</h1>
+
+<p>Are you sure you want to delete the employee: @Model.Name?</p>
+
+<form method="post" action="/Employee/DeleteConfirmed/@Model.Id">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="/Employee/Index" class="btn btn-secondary">Cancel</a>
+</form>
